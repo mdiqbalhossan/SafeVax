@@ -19,33 +19,47 @@
     <div class="columns">
         <div class="column is-half is-offset-one-quarter">
             <h1 class="title">Register For Vaccine</h1>
-            <form class="box">
+            <form class="box" method="POST" action="{{ route('register.store') }}">
+                @csrf
                 <div class="field">
                     <label class="label">Vaccine Center <span class="has-text-danger">*</span></label>
-                    <div class="select is-primary">
-                        <select required>
+                    <div class="select is-primary @error('center_id') is-danger @enderror">
+                        <select name="center_id">
                             <option value="">Select Vaccine Center</option>
                             @foreach ($vaccineCenters as $vaccineCenter)
-                                <option value="{{ $vaccineCenter->id }}">{{ $vaccineCenter->name }}</option>
+                                <option value="{{ $vaccineCenter->id }}" @disabled($vaccineCenter->capacity_per_day <= $vaccineCenter->total_registered)>
+                                    {{ $vaccineCenter->name }}({{ $vaccineCenter->capacity_per_day }} -
+                                    {{ $vaccineCenter->total_registered }})</option>
                             @endforeach
                         </select>
                     </div>
+                    @error('center_id')
+                        <p class="help is-danger">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="columns">
                     <div class="column">
                         <div class="field">
                             <label class="label">First Name <span class="has-text-danger">*</span></label>
                             <div class="control">
-                                <input class="input is-primary" type="text" placeholder="First Name" required />
+                                <input class="input is-primary @error('first_name') is-danger @enderror" type="text"
+                                    name="first_name" placeholder="First Name" />
                             </div>
+                            @error('first_name')
+                                <p class="help is-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="column">
                         <div class="field">
                             <label class="label">Last Name <span class="has-text-danger">*</span></label>
                             <div class="control">
-                                <input class="input is-primary" type="text" placeholder="Last Name" required />
+                                <input class="input is-primary @error('last_name') is-danger @enderror" type="text"
+                                    name="last_name" placeholder="Last Name" />
                             </div>
+                            @error('last_name')
+                                <p class="help is-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -54,16 +68,24 @@
                         <div class="field">
                             <label class="label">NID <span class="has-text-danger">*</span></label>
                             <div class="control">
-                                <input class="input is-primary" type="text" placeholder="8210100000000000" required />
+                                <input class="input is-primary @error('nid') is-danger @enderror" type="text"
+                                    name="nid" placeholder="8210100000000000" />
                             </div>
+                            @error('nid')
+                                <p class="help is-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="column">
                         <div class="field">
                             <label class="label">Birth Date <span class="has-text-danger">*</span></label>
                             <div class="control">
-                                <input id="bulma-datepicker-2" class="input is-primary" type="date" required>
+                                <input id="bulma-datepicker-2" class="input is-primary @error('date') is-danger @enderror"
+                                    type="date" name="birthday">
                             </div>
+                            @error('birthday')
+                                <p class="help is-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -72,16 +94,24 @@
                         <div class="field">
                             <label class="label">Email <span class="has-text-danger">*</span></label>
                             <div class="control">
-                                <input class="input is-primary" type="email" placeholder="example@example.com" required />
+                                <input class="input is-primary @error('email') is-danger @enderror" type="email"
+                                    name="email" placeholder="example@example.com" />
                             </div>
+                            @error('email')
+                                <p class="help is-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="column">
                         <div class="field">
                             <label class="label">Phone <span class="has-text-danger">*</span></label>
                             <div class="control">
-                                <input class="input is-primary" type="text" placeholder="01xxxxxxxxx" required />
+                                <input class="input is-primary @error('phone') is-danger @enderror" type="text"
+                                    name="phone" placeholder="01xxxxxxxxx" />
                             </div>
+                            @error('phone')
+                                <p class="help is-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                 </div>

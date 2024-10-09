@@ -28,7 +28,7 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-black is-soft">
+                        <a href="{{ route('register') }}" class="button is-black is-soft">
                             <span class="icon">
                                 <i class="fas fa-user-plus"></i>
                             </span>

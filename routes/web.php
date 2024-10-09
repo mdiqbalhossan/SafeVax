@@ -1,9 +1,11 @@
 <?php
 
-use App\Models\VaccineCenter;
+use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $vaccineCenters = VaccineCenter::all();
-    return view('register', compact('vaccineCenters'));
+Route::redirect('/', 'register');
+
+Route::controller(MemberController::class)->group(function () {
+    Route::get('/register', 'index')->name('register');
+    Route::post('/register', 'store')->name('register.store');
 });
