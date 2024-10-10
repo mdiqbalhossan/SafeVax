@@ -24,6 +24,13 @@ class ScheduleVaccination
         }
     }
 
+    /**
+     * Get the next available vaccine center.
+     * 
+     * @param  \Illuminate\Support\Collection  $vaccineCenters
+     * @param  \App\Models\Member  $member
+     * @return \App\Models\VaccineCenter|null
+     */
     private function getNextAvailableVaccineCenter($vaccineCenters, $member)
     {
         $nextWeekday = $this->getNextWeekday();
@@ -52,6 +59,11 @@ class ScheduleVaccination
         return null;
     }
     
+    /**
+     * Get the next weekday.
+     * 
+     * @return \Carbon\Carbon
+     */
     private function getNextWeekday()
     {
         $today = today();
@@ -64,13 +76,30 @@ class ScheduleVaccination
         return $nextWeekday;
     }
 
+    /**
+     * Check if the date is a weekday.
+     * 
+     * @param  \Carbon\Carbon  $date
+     * @return bool
+     */
     private function isWeekday($date)
     {
         return $date->dayOfWeek <= 4;
     }
 
+    /**
+     * Schedule the vaccination.
+     * 
+     * @param  \App\Models\Member  $member
+     * @param  \App\Models\VaccineCenter  $vaccineCenter
+     * @return void
+     */
     private function scheduleVaccination(Member $member, VaccineCenter $vaccineCenter)
     {
+        if (Schedule::where('member_id', $member->id)->exists()) {
+            return; 
+        }
+
         $schedule = new Schedule();
         $schedule->member_id = $member->id;
         $schedule->vaccine_center_id = $vaccineCenter->id;
