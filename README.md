@@ -6,14 +6,13 @@ This project is a web application designed to manage vaccine registrations and s
 
 To run this project, follow these steps:
 
-1. **Clone the repository**: Clone this repository to your local machine using Git by running `git clone https://github.com/your-username/your-repo-name.git`.
-2. **Install dependencies**: Run `composer install` in the project directory to install all the required dependencies.
-3. **Set Up Environment Variables**:Create a copy of the `.env.example` file and rename it to `.env`. This file contains environment variables for your Laravel application. You can modify the variables as needed.
+1. **Clone the repository**: Clone this repository to your local machine using Git by running `git clone https://github.com/your-username/your-repo-name.git`. Place the cloned repository in your computer's xampp or wampp web directory.
+2. **Install dependencies**: Navigate to the project directory and run `composer install` to install all the required dependencies.
+3. **Set Up Environment Variables**: Duplicate the `.env.example` file and rename it to `.env`. This file contains environment variables for your Laravel application. You can modify the variables as needed.
 4. **Generate application key**: Run `php artisan key:generate` to generate a unique application key.
 5. **Database Setup**: Ensure the `DB_CONNECTION` in the `.env` file is set to `sqlite`. If you're using an existing database, no migration is required. If you're creating a new database, update the database configuration in the `.env` file. Then, run `php artisan migrate:fresh --seed` to set up the database schema and seed the database with initial data.
 
-6. **Serve the application**: Run `php artisan serve` to start the development server.
-7. **Access the application**: Open a web browser and navigate to `http://localhost:8000` to access the application.
+6. **Access the application**: Open a web browser and navigate to `http://localhost/safevax` to access the application. Note that `safevax` is the folder name of the project.
 
 # Email Configuration
 
