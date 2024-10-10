@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\ScheduleVaccine;
 use App\Models\Member;
 use App\Models\Schedule;
 use App\Models\VaccineCenter;
@@ -13,22 +14,37 @@ class ScheduleVaccination
     /**
      * Handle the event.
      */
-    public function handle(Member $member): void
+    public function handle(ScheduleVaccine $event): void
     {
         $vaccineCenters = VaccineCenter::all();
 
-        $vaccineCenter = $this->getNextAvailableVaccineCenter($vaccineCenters, $member);
+        $vaccineCenter = $this->getNextAvailableVaccineCenter($vaccineCenters, $event->member);
         if($vaccineCenter){
-            $this->scheduleVaccination($member, $vaccineCenter);
+            $this->scheduleVaccination($event->member, $vaccineCenter);
         }
     }
 
     private function getNextAvailableVaccineCenter($vaccineCenters, $member)
     {
+        $nextWeekday = $this->getNextWeekday();
+        $selectedCenter = $member->center_id;        
+        $selectedCenterCapacity = VaccineCenter::find($selectedCenter)->capacity_per_day;        
+        $totalRegistered = Schedule::where('vaccine_center_id', $selectedCenter)
+            ->whereDate('date', $nextWeekday->format('Y-m-d'))
+            ->count();
+
+        if ($totalRegistered < $selectedCenterCapacity) {
+            return VaccineCenter::find($selectedCenter);
+        } else {
+            session()->flash('another-center-message', 'The selected center is full. System will automatically select another center.');
+        }
+
         foreach ($vaccineCenters as $vaccineCenter) {
-            if ($vaccineCenter->capacity_per_day > $vaccineCenter->members()->count()) {
-                $nextWeekday = $this->getNextWeekday();
-                if ($nextWeekday) {
+            if ($vaccineCenter->id != $selectedCenter) {
+                $totalRegistered = Schedule::where('vaccine_center_id', $vaccineCenter->id)
+                    ->whereDate('date', $nextWeekday->format('Y-m-d'))
+                    ->count();
+                if ($totalRegistered < $vaccineCenter->capacity_per_day) {
                     return $vaccineCenter;
                 }
             }
@@ -58,7 +74,7 @@ class ScheduleVaccination
         $schedule = new Schedule();
         $schedule->member_id = $member->id;
         $schedule->vaccine_center_id = $vaccineCenter->id;
-        $schedule->vaccination_date = $this->getNextWeekday();
+        $schedule->date = $this->getNextWeekday();
         $schedule->save();
     }
 }

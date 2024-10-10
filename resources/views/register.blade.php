@@ -19,6 +19,11 @@
     <div class="columns">
         <div class="column is-half is-offset-one-quarter">
             <h1 class="title">Register For Vaccine</h1>
+            @if (session('error'))
+                <div class="notification is-danger is-light">
+                    {{ session('error') }}
+                </div>
+            @endif
             <form class="box" method="POST" action="{{ route('register.store') }}">
                 @csrf
                 <div class="field">
@@ -27,9 +32,8 @@
                         <select name="center_id">
                             <option value="">Select Vaccine Center</option>
                             @foreach ($vaccineCenters as $vaccineCenter)
-                                <option value="{{ $vaccineCenter->id }}" @disabled($vaccineCenter->capacity_per_day <= $vaccineCenter->total_registered)>
-                                    {{ $vaccineCenter->name }}({{ $vaccineCenter->capacity_per_day }} -
-                                    {{ $vaccineCenter->total_registered }})</option>
+                                <option value="{{ $vaccineCenter->id }}" @selected(old('center_id') == $vaccineCenter->id)>
+                                    {{ $vaccineCenter->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -43,7 +47,7 @@
                             <label class="label">First Name <span class="has-text-danger">*</span></label>
                             <div class="control">
                                 <input class="input is-primary @error('first_name') is-danger @enderror" type="text"
-                                    name="first_name" placeholder="First Name" />
+                                    name="first_name" placeholder="First Name" value="{{ old('first_name') }}" />
                             </div>
                             @error('first_name')
                                 <p class="help is-danger">{{ $message }}</p>
@@ -55,7 +59,7 @@
                             <label class="label">Last Name <span class="has-text-danger">*</span></label>
                             <div class="control">
                                 <input class="input is-primary @error('last_name') is-danger @enderror" type="text"
-                                    name="last_name" placeholder="Last Name" />
+                                    name="last_name" placeholder="Last Name" value="{{ old('last_name') }}" />
                             </div>
                             @error('last_name')
                                 <p class="help is-danger">{{ $message }}</p>
@@ -69,7 +73,7 @@
                             <label class="label">NID <span class="has-text-danger">*</span></label>
                             <div class="control">
                                 <input class="input is-primary @error('nid') is-danger @enderror" type="text"
-                                    name="nid" placeholder="8210100000000000" />
+                                    name="nid" placeholder="8210100000000000" value="{{ old('nid') }}" />
                             </div>
                             @error('nid')
                                 <p class="help is-danger">{{ $message }}</p>
@@ -80,8 +84,8 @@
                         <div class="field">
                             <label class="label">Birth Date <span class="has-text-danger">*</span></label>
                             <div class="control">
-                                <input id="bulma-datepicker-2" class="input is-primary @error('date') is-danger @enderror"
-                                    type="date" name="birthday">
+                                <input id="bulma-datepicker-2" class="input is-primary @error('birthday') is-danger @enderror"
+                                    type="date" name="birthday" value="{{ old('birthday') }}">
                             </div>
                             @error('birthday')
                                 <p class="help is-danger">{{ $message }}</p>
@@ -95,7 +99,7 @@
                             <label class="label">Email <span class="has-text-danger">*</span></label>
                             <div class="control">
                                 <input class="input is-primary @error('email') is-danger @enderror" type="email"
-                                    name="email" placeholder="example@example.com" />
+                                    name="email" placeholder="example@example.com" value="{{ old('email') }}" />
                             </div>
                             @error('email')
                                 <p class="help is-danger">{{ $message }}</p>
@@ -107,7 +111,7 @@
                             <label class="label">Phone <span class="has-text-danger">*</span></label>
                             <div class="control">
                                 <input class="input is-primary @error('phone') is-danger @enderror" type="text"
-                                    name="phone" placeholder="01xxxxxxxxx" />
+                                    name="phone" placeholder="01xxxxxxxxx" value="{{ old('phone') }}" />
                             </div>
                             @error('phone')
                                 <p class="help is-danger">{{ $message }}</p>

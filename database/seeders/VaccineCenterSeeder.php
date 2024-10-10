@@ -19,7 +19,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-2-55165060',
                 'email' => 'info@dmch.gov.bd',
                 'website' => 'https://www.dmch.gov.bd',
-                'capacity_per_day' => 30,
+                'capacity_per_day' => 5,
             ],
             [
                 'name' => 'Bangladesh Institute of Tropical and Infectious Diseases (BITID)',
@@ -27,7 +27,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-31-620333',
                 'email' => 'info@bitid.gov.bd',
                 'website' => 'https://www.bitid.gov.bd',
-                'capacity_per_day' => 20,
+                'capacity_per_day' => 7,
             ],
             [
                 'name' => 'Chittagong Medical College Hospital',
@@ -35,7 +35,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-31-620333',
                 'email' => 'info@cmc.gov.bd',
                 'website' => 'https://www.cmc.gov.bd',
-                'capacity_per_day' => 50,
+                'capacity_per_day' => 9,
             ],
             [
                 'name' => 'Rajshahi Medical College Hospital',
@@ -43,7 +43,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-721-772503',
                 'email' => 'info@rmc.gov.bd',
                 'website' => 'https://www.rmc.gov.bd',
-                'capacity_per_day' => 30,
+                'capacity_per_day' => 12,
             ],
             [
                 'name' => 'Mymensingh Medical College Hospital',
@@ -51,7 +51,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-91-66063',
                 'email' => 'info@mmc.gov.bd',
                 'website' => 'https://www.mmc.gov.bd',
-                'capacity_per_day' => 40,
+                'capacity_per_day' => 4,
             ],
             [
                 'name' => 'Sylhet MAG Osmani Medical College Hospital',
@@ -59,7 +59,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-821-716123',
                 'email' => 'info@smoc.gov.bd',
                 'website' => 'https://www.smoc.gov.bd',
-                'capacity_per_day' => 40,
+                'capacity_per_day' => 3,
             ],
             [
                 'name' => 'Khulna Medical College Hospital',
@@ -67,7 +67,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-41-760500',
                 'email' => 'info@kmc.gov.bd',
                 'website' => 'https://www.kmc.gov.bd',
-                'capacity_per_day' => 50,
+                'capacity_per_day' => 2,
             ],
             [
                 'name' => 'Barisal Sher-e-Bangla Medical College Hospital',
@@ -75,7 +75,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-43-651122',
                 'email' => 'info@bsmch.gov.bd',
                 'website' => 'https://www.bsmch.gov.bd',
-                'capacity_per_day' => 20,
+                'capacity_per_day' => 7,
             ],
             [
                 'name' => 'Rangpur Medical College Hospital',
@@ -83,7 +83,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-521-63444',
                 'email' => 'info@rmc.gov.bd',
                 'website' => 'https://www.rmc.gov.bd',
-                'capacity_per_day' => 20,
+                'capacity_per_day' => 9,
             ],
             [
                 'name' => 'Comilla Medical College Hospital',
@@ -123,7 +123,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-71-62022',
                 'email' => 'info@kmc.gov.bd',
                 'website' => 'https://www.kmc.gov.bd',
-                'capacity_per_day' => 40,
+                'capacity_per_day' => 13,
             ],
             [
                 'name' => 'Pabna Medical College Hospital',
@@ -131,7 +131,7 @@ class VaccineCenterSeeder extends Seeder
                 'phone' => '+880-73-65111',
                 'email' => 'info@pmc.gov.bd',
                 'website' => 'https://www.pmc.gov.bd',
-                'capacity_per_day' => 35,
+                'capacity_per_day' => 17,
             ],
         ];
 

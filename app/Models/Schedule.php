@@ -16,6 +16,20 @@ class Schedule extends Model
         'date',
     ];
 
+    protected $casts = [
+        'date' => 'date',
+    ];
+
+    /**
+     * Get the date in the format YYYY-MM-DD.
+     * 
+     * @return string
+     */
+    public function getFormattedDateAttribute()
+    {
+        return $this->date->format('Y-m-d');
+    }
+
     /**
      * Member
      * 

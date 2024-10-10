@@ -8,4 +8,5 @@ Route::redirect('/', 'register');
 Route::controller(MemberController::class)->group(function () {
     Route::get('/register', 'index')->name('register');
     Route::post('/register', 'store')->name('register.store');
+    Route::get('/success/{member}', 'success')->name('register.success');
 });
