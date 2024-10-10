@@ -34,7 +34,7 @@
                             </span>
                             <span>Register Vaccine</span>
                         </a>
-                        <a class="button is-black is-light">
+                        <a href="{{ route('search') }}" class="button is-black is-light">
                             <span class="icon">
                                 <i class="fas fa-search"></i>
                             </span>

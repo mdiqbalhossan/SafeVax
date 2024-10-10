@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Register')
+@section('title', 'Registration Success')
 
 @push('styles')
 @endpush
