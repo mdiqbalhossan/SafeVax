@@ -103,9 +103,10 @@ To optimize the performance of user registration and search, we can implement th
 
 By implementing these optimizations, we can enhance the performance of the application significantly.
 
+
+# SMS Send
 **
 **Note:** If an additional requirement of sending ‘SMS’ notification along with the email notification for vaccine schedule date is given in the future, the following changes need to be made in the code:
-# SMS Send
 1. Integrate an SMS API into the project.
 2. Update `handle` method in the `App\Console\Commands\SendVaccinationReminder.php` command to handle sending SMS reminders.
 3. Update the `handle` method in the `App\Console\Commands\SendVaccinationReminders.php` command to include the following code for sending SMS:
